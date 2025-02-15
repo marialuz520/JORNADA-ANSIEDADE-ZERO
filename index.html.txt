@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Ansiedade</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            margin: auto;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px;
+            width: 100%;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Calculadora de Ansiedade</h2>
+        <p>Responda as perguntas e descubra seu nível de ansiedade.</p>
+        <form id="quizForm">
+            <p>1. Você sente preocupação excessiva no dia a dia?</p>
+            <input type="radio" name="q1" value="1"> Sim
+            <input type="radio" name="q1" value="0"> Não
+            <p>2. Tem dificuldade para dormir devido a pensamentos ansiosos?</p>
+            <input type="radio" name="q2" value="1"> Sim
+            <input type="radio" name="q2" value="0"> Não
+            <p>3. Sente palpitações ou falta de ar sem motivo aparente?</p>
+            <input type="radio" name="q3" value="1"> Sim
+            <input type="radio" name="q3" value="0"> Não
+            <br><br>
+            <button type="button" onclick="calcularAnsiedade()">Ver Resultado</button>
+        </form>
+        
+        <div id="resultado" class="hidden">
+            <h3>Resultado</h3>
+            <p id="mensagem"></p>
+            <h4>Como reduzir a ansiedade?</h4>
+            <p>Baixe nosso guia gratuito com técnicas eficazes.</p>
+            <a href="https://seulink.com/ebook" target="_blank">
+                <button>Baixar Guia</button>
+            </a>
+            <p>Ou conheça este <a href="https://seulink.com/curso" target="_blank">curso incrível</a>.</p>
+        </div>
+    </div>
+    
+    <script>
+        function calcularAnsiedade() {
+            let pontuacao = 0;
+            const respostas = document.querySelectorAll('input[type="radio"]:checked');
+            respostas.forEach(resposta => pontuacao += parseInt(resposta.value));
+            
+            let mensagem = "";
+            if (pontuacao >= 2) {
+                mensagem = "Você pode estar enfrentando ansiedade. Recomendamos buscar apoio e técnicas de relaxamento.";
+            } else {
+                mensagem = "Seu nível de ansiedade parece baixo. Continue cuidando da sua saúde mental!";
+            }
+            
+            document.getElementById("mensagem").innerText = mensagem;
+            document.getElementById("resultado").classList.remove("hidden");
+        }
+    </script>
+</body>
+</html>
